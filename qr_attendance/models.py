@@ -1,4 +1,5 @@
 from database import get_db
+from datetime import datetime, timedelta
 # CREATE USER
 
 def create_user(student_id, name, password):
@@ -43,6 +44,8 @@ def save_attendance(student_id, name):
     db = get_db()
     cursor = db.cursor()
 
+    # Philippine time (+8)
+    ph_time = datetime.utcnow() + timedelta(hours=8)
     cursor.execute(
         """
         INSERT INTO attendance (student_id, name)
